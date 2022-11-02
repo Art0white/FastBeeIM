@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-@MapperScan("com.fastbee.fastbeeim.mapper")
 public class FastBeeIMApplication {
 
     public static void main(String[] args) {
