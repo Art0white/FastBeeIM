@@ -1,7 +1,7 @@
 package com.fastbee.fastbeeim.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.fastbee.fastbeeim.pojo.RespBean;
+import com.fastbee.fastbeeim.utils.RespBean;
 import com.fastbee.fastbeeim.pojo.User;
 
 import javax.servlet.http.HttpServletRequest;

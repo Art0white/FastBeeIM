@@ -17,8 +17,6 @@ public class ChatController {
 
     @GetMapping("/getOneUser")
     public User getUserByUserName(String username) {
-        System.out.println("执行了这里, " + username);
-        System.out.println(userService.getUserByUserName(username).toString());
         return userService.getUserByUserName(username);
     }
 
@@ -27,5 +25,4 @@ public class ChatController {
         System.out.println(userService.getAllUsers(keywords).toString());
         return userService.getAllUsers(keywords);
     }
-
 }

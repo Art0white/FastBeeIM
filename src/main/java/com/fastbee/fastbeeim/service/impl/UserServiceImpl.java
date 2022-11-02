@@ -3,7 +3,7 @@ package com.fastbee.fastbeeim.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fastbee.fastbeeim.mapper.UserMapper;
-import com.fastbee.fastbeeim.pojo.RespBean;
+import com.fastbee.fastbeeim.utils.RespBean;
 import com.fastbee.fastbeeim.pojo.User;
 import com.fastbee.fastbeeim.service.IUserService;
 import com.fastbee.fastbeeim.utils.UserUtils;
@@ -32,6 +32,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public List<User> getAllUsers(String keywords) {
-        return userMapper.getAllUsers(UserUtils.getCurrentUser().getId(), keywords);
+        return null;
+        //userMapper.getAllUsers(UserUtils.getCurrentUser().getId(), keywords)
     }
 }
