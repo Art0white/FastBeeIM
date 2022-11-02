@@ -59,3 +59,9 @@ mybatis-plus:
   mapper-locations: mapper/*.xml
   type-aliases-package: com.fastbee.fastbeeim.pojo
 
+com:
+  fastbee:
+    socket:
+      url: ws://localhost:9292/ws/ep
+
+
