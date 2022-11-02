@@ -6,6 +6,10 @@ import lombok.EqualsAndHashCode;
 import java.io.Serializable;
 import java.util.Collection;
 
+/**
+ * 用户类
+ * @author Lovsog
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class User implements Serializable {

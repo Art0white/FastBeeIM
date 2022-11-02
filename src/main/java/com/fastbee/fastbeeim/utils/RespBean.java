@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
  * 公共返回对象
  *
  * @author Lovsog
- * 2022/1/12
- **/
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

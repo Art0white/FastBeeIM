@@ -6,6 +6,10 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Mybatis-Plus配置类
+ * @author Lovsog
+ */
 @Configuration
 @MapperScan("com.fastbee.fastbeeim.mapper")
 public class MybatisPlusConfig {

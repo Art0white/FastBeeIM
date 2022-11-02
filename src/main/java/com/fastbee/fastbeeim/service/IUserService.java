@@ -7,6 +7,10 @@ import com.fastbee.fastbeeim.pojo.User;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * UserService接口
+ * @author Lovsog
+ */
 public interface IUserService extends IService<User> {
     RespBean login(String username, String password, HttpServletRequest request);
 

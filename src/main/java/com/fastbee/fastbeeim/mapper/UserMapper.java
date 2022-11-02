@@ -6,6 +6,10 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+/**
+ * UserMapper
+ * @author Lovsog
+ */
 public interface UserMapper extends BaseMapper<User> {
     List<User> getAllUsers(@Param("id") Integer id, @Param("keywords") String keywords);
 }
