@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>商城灌水集市</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>
+            <div id="msglist" style="width: 600px; height: 300px; border: 1px solid red; overflow-y: auto"></div>
+        </td>
+    </tr>
+</table>
+<table border="1" style="width: 600px;">
+    <tr>
+        <td>
+            用户名：<input id="username" type="text" />
+        </td>
+        <td>
+            <button id="connect" type="button">连接</button>
+            <button id="disconnect" type="button">断开</button>
+        </td>
+        <td>
+            <input id="content" type="text" placeholder="聊天内容........." />
+            <button id="send" type="button">发送</button>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript" src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript" src="@{/webjars/sockjs-client/sockjs.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/stomp-websocket/stomp.min.js}"></script>
+<script type="text/javascript" th:src="@{/bizjs/chatroom.js}"></script>
+</body>
+</html>
