@@ -24,6 +24,7 @@ public class ChatController {
 
     @GetMapping("/getUserList")
     public List<User> getAllUsers(String keywords) {
+        System.out.println(userService.getAllUsers(keywords).toString());
         return userService.getAllUsers(keywords);
     }
 
