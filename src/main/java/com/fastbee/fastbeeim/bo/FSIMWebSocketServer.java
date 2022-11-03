@@ -1,6 +1,5 @@
 package com.fastbee.fastbeeim.bo;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fastbee.fastbeeim.pojo.TextMessage;
 import org.slf4j.Logger;
@@ -12,7 +11,6 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -69,7 +67,7 @@ public class FSIMWebSocketServer {
         logger.info("onClose: has new client close connection -" + clientId);
         clients.remove(clientId);
         subOnlineCount();
-        logger.info("onClose: now has "+onlineCount+" client online");
+        logger.info("onClose: now has " + onlineCount + " client online");
     }
 
     /**
@@ -78,7 +76,7 @@ public class FSIMWebSocketServer {
      * @throws IOException
      */
     @OnMessage
-    public void onMessage(String message, Session session){
+    public void onMessage(String message){
         logger.info("onMessage: [clientId: " + clientId + " ,message:" + message + "]");
     }
 
@@ -114,7 +112,7 @@ public class FSIMWebSocketServer {
      * @param to
      * @throws IOException
      */
-    public void sendP2PMessage(String content, Integer from, String fromNick,Integer to) {
+    public int sendP2PMessage(String content, Integer from, String fromNick,Integer to) {
         JSONObject json = new JSONObject();
         TextMessage textMessage = new TextMessage();
         textMessage.setFrom(from);
@@ -124,12 +122,15 @@ public class FSIMWebSocketServer {
         textMessage.setDate(LocalDateTime.now());
         json.put("textMessage", textMessage);
 
+        int i = 0;
         for (FSIMWebSocketServer item : clients.values()) {
             if (item.clientId.equals(to.toString())) {
+                i++;
                 item.session.getAsyncRemote().sendText(json.toJSONString());
                 break;
             }
         }
+        return i;
     }
 
     /**
@@ -145,13 +146,16 @@ public class FSIMWebSocketServer {
         json.put("fromNick", fromNick);
         int i = 0;
         for (FSIMWebSocketServer item : clients.values()) {
+            if(item.clientId.equals(from.toString())) {
+                continue;
+            }
             System.out.println(i++);
             item.session.getAsyncRemote().sendText(json.toJSONString());
         }
     }
 
     /**
-     * 获取总链接数
+     * 获取在线总数
      */
     public static synchronized int getOnlineCount() {
         return onlineCount;

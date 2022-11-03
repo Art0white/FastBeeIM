@@ -35,6 +35,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
+    public User getUserById(Integer id) {
+        return userMapper.selectOne(new QueryWrapper<User>().eq("id", id).eq("enabled", true));
+    }
+
+    @Override
     public List<User> getAllUsers(String keywords) {
         return null;
         //userMapper.getAllUsers(UserUtils.getCurrentUser().getId(), keywords)

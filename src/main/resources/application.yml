@@ -62,6 +62,6 @@ mybatis-plus:
 com:
   fastbee:
     socket:
-      url: ws://localhost:9292/ws/eq
+      url: ws://localhost:9292/ws/123
 
 

@@ -1,6 +1,5 @@
 package com.fastbee.fastbeeim.controller;
 
-import com.fastbee.fastbeeim.bo.FSIMWebSocketClient;
 import com.fastbee.fastbeeim.bo.FSIMWebSocketServer;
 import com.fastbee.fastbeeim.utils.RespBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +17,14 @@ public class WebSocketController {
     @Autowired
     private FSIMWebSocketServer websocketServer;
 
-    @Autowired
-    private FSIMWebSocketClient socketClient;
-
     @ResponseBody
     @PostMapping(value = "/sendP2PMessage")
     public RespBean sendP2PMessage(String content, Integer from, String fromNick, Integer to) {
-        websocketServer.sendP2PMessage(content, from, fromNick, to);
-        return RespBean.success(content);
+        int res = websocketServer.sendP2PMessage(content, from, fromNick, to);
+        if(res == 0) {
+            return RespBean.error("不存在该接收方");
+        }
+        return RespBean.success("发送P2P消息成功", content);
     }
 
     @ResponseBody
