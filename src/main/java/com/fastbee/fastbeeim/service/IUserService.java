@@ -16,5 +16,7 @@ public interface IUserService extends IService<User> {
 
     User getUserByUserName(String username);
 
+    User getUserById(Integer id);
+
     List<User> getAllUsers(String keywords);
 }
