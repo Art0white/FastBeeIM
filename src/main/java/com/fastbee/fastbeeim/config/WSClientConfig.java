@@ -1,5 +1,6 @@
 package com.fastbee.fastbeeim.config;
 
+import com.fastbee.fastbeeim.bo.FSIMWebSocketClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

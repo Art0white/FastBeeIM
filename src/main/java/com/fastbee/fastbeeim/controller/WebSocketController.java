@@ -1,12 +1,11 @@
 package com.fastbee.fastbeeim.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fastbee.fastbeeim.config.FSIMWebSocketClient;
-import com.fastbee.fastbeeim.config.FSIMWebSocketServer;
-import com.fastbee.fastbeeim.pojo.ChatMessage;
+import com.fastbee.fastbeeim.bo.FSIMWebSocketClient;
+import com.fastbee.fastbeeim.bo.FSIMWebSocketServer;
+import com.fastbee.fastbeeim.pojo.TextMessage;
+import com.fastbee.fastbeeim.utils.RespBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,8 +20,6 @@ import java.time.LocalDateTime;
  */
 @Controller
 public class WebSocketController {
-    @Autowired
-    private SimpMessagingTemplate simpMessagingTemplate;
 
     @Autowired
     private FSIMWebSocketServer websocketServer;
@@ -30,22 +27,17 @@ public class WebSocketController {
     @Autowired
     private FSIMWebSocketClient socketClient;
 
-    @MessageMapping("/ws/chat")
-    public void handleMsg(ChatMessage chatMsg) {
-        chatMsg.setFrom("test");
-        chatMsg.setFromNickName("test");
-        chatMsg.setDate(LocalDateTime.now());
-        simpMessagingTemplate.convertAndSendToUser(chatMsg.getTo(), "/queue/chat",
-                chatMsg);
-    }
-
     @ResponseBody
-    @PostMapping(value = "/message")
-    public void getSocketMessage(HttpServletRequest request) throws IOException {
-        System.out.println("/message");
+    @PostMapping(value = "/sendP2PMessage")
+    public RespBean sendP2PMessage(String content, Integer from, String fromNick, Integer to) {
+        websocketServer.sendP2PMessage(content, from, fromNick, to);
+        return RespBean.success(content);
+    }
+    @ResponseBody
+    @PostMapping(value = "/sendToAllMessage")
+    public void sendToAllMessage(String content, Integer from, String fromNick,Integer to) {
         JSONObject json = new JSONObject();
-        json.put("to", request.getSession().getId());
-        json.put("msg", "欢迎连接WebSocket！！！！");
-        websocketServer.sendMessageAll(json.toJSONString());
+        TextMessage textMessage = new TextMessage();
+        textMessage.setFrom(from);
     }
 }

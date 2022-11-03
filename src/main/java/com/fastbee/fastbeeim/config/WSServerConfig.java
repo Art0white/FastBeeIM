@@ -18,7 +18,6 @@ public class WSServerConfig {
         ServerEndpointExporter serverEndpointExporter = new ServerEndpointExporter();
         return serverEndpointExporter;
     }
-
 }
 
 

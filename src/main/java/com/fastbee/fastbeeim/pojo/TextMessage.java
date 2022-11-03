@@ -12,10 +12,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class ChatMessage {
-    private String from;
-    private String to;
+public class TextMessage extends Message {
     private String content;
-    private LocalDateTime date;
     private String fromNickName;
 }

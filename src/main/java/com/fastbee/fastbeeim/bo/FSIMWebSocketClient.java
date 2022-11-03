@@ -1,4 +1,4 @@
-package com.fastbee.fastbeeim.config;
+package com.fastbee.fastbeeim.bo;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+import javax.websocket.OnMessage;
+import javax.websocket.Session;
 import java.net.URI;
 import java.util.concurrent.atomic.AtomicBoolean;
 
