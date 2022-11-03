@@ -2,12 +2,11 @@ server:
   port: 9292
 
 spring:
+  profiles:
+    include: db
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://rm-bp1408aucroje0sq28o.mysql.rds.aliyuncs.com:3306/fs_server_db?useSSL=true&useUnicode=true&characterEncoding=utf8
-    username: gravity
-    password: Gravity=lmx
     druid:
       # 数据库访问配置, 使用druid数据源
       # 连接池配置
