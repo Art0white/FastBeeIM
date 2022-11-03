@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket</title>
+    <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+    <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+    <style>
+        #message{
+            margin: auto;
+            text-align: center;
+            width: 700px;
+
+        }
+        .setLi{
+            background-color: #ecafaf;
+            opacity: 0.4;
+            list-style: none;
+            line-height: 60px;
+            height: 60px;
+        }
+        #onLineUser{
+            margin-top: 25px;
+            padding: 0px;
+            color: #2230d8;
+            text-align: center;
+            font-size: large;
+        }
+        .divFlow{
+            overflow-x: auto;
+            overflow-y: auto;
+            height: 610px;
+            width:750px;
+            border:1px solid black
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    发送给: <input id="userTo" type="text"/>
+    <input id="text" type="text" />
+    <button onclick="send()">发送消息</button>
+    <button onclick="closeWebSocket()">关闭连接</button>
+    <hr/>
+    <div id="userInfo"></div>
+    <div class="divFlow" style="border: 1px solid black">
+        <table id="message"></table>
+    </div>
+</div>
+</body>
+<script src="/js/chatPage.js"></script>
+</html>
