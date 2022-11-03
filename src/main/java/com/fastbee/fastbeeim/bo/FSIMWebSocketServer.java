@@ -1,5 +1,6 @@
 package com.fastbee.fastbeeim.bo;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fastbee.fastbeeim.pojo.TextMessage;
 import org.slf4j.Logger;
@@ -78,6 +79,28 @@ public class FSIMWebSocketServer {
     @OnMessage
     public void onMessage(String message){
         logger.info("onMessage: [clientId: " + clientId + " ,message:" + message + "]");
+        JSONObject jsonObject = JSON.parseObject(message);
+
+        int smType = (int) jsonObject.get("sendMessageType");
+        int mType = (int) jsonObject.get("messageType");
+        if(smType == 1) {
+            if(mType == 1) {
+                sendP2PMessage((String) jsonObject.get("content"),
+                        Integer.valueOf((String) jsonObject.get("from")),
+                        "lmx",
+                        Integer.valueOf((String) jsonObject.get("to")),
+                        smType,
+                        mType);
+            }
+        } else if (smType == 2) {
+            if(mType == 1) {
+                sendGroupMessage((String) jsonObject.get("content"),
+                        Integer.valueOf((String) jsonObject.get("from")),
+                        "lmx",
+                        smType,
+                        mType);
+            }
+        }
     }
 
     /**
@@ -91,20 +114,6 @@ public class FSIMWebSocketServer {
     }
 
     /**
-     * 指定端末发送消息
-     * @param message
-     * @param clientId
-     * @throws IOException
-     */
-    public void sendMessageByClientId(String message, String clientId) throws IOException {
-        for (FSIMWebSocketServer item : clients.values()) {
-            if (item.clientId.equals(clientId) ) {
-                item.session.getAsyncRemote().sendText(message);
-            }
-        }
-    }
-
-    /**
      * P2P发送
      * @param content
      * @param from
@@ -112,7 +121,12 @@ public class FSIMWebSocketServer {
      * @param to
      * @throws IOException
      */
-    public int sendP2PMessage(String content, Integer from, String fromNick,Integer to) {
+    public int sendP2PMessage(String content,
+                              Integer from,
+                              String fromNick,
+                              Integer to,
+                              int messageType,
+                              int sendMessageType) {
         JSONObject json = new JSONObject();
         TextMessage textMessage = new TextMessage();
         textMessage.setFrom(from);
@@ -120,7 +134,9 @@ public class FSIMWebSocketServer {
         textMessage.setTo(to);
         textMessage.setContent(content);
         textMessage.setDate(LocalDateTime.now());
-        json.put("textMessage", textMessage);
+        textMessage.setMessageType(messageType);
+        textMessage.setSendMessageType(sendMessageType);
+        json.put("message", textMessage);
 
         int i = 0;
         for (FSIMWebSocketServer item : clients.values()) {
@@ -139,17 +155,26 @@ public class FSIMWebSocketServer {
      * @param from
      * @param fromNick
      */
-    public void sendMessageAll(String content, Integer from, String fromNick){
+    public void sendGroupMessage(String content,
+                                 Integer from,
+                                 String fromNick,
+                                 int messageType,
+                                 int sendMessageType){
         JSONObject json = new JSONObject();
-        json.put("content", content);
-        json.put("from", from);
-        json.put("fromNick", fromNick);
+        TextMessage textMessage = new TextMessage();
+        textMessage.setFrom(from);
+        textMessage.setFromNickName(fromNick);
+        textMessage.setContent(content);
+        textMessage.setDate(LocalDateTime.now());
+        textMessage.setMessageType(messageType);
+        textMessage.setSendMessageType(sendMessageType);
+
+        json.put("message", textMessage);
         int i = 0;
         for (FSIMWebSocketServer item : clients.values()) {
             if(item.clientId.equals(from.toString())) {
                 continue;
             }
-            System.out.println(i++);
             item.session.getAsyncRemote().sendText(json.toJSONString());
         }
     }

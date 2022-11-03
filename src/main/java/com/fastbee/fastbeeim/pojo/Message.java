@@ -13,4 +13,13 @@ public class Message {
     private Integer from;
     private Integer to;
     private LocalDateTime date;
+    private int messageType;
+    /**
+     * 1
+     */
+    private int sendMessageType;
+    /**
+     * 1 P2PChat
+     * 2 GroupChat
+     */
 }
