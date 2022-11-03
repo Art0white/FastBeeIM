@@ -4,13 +4,17 @@
 提供给开发者快速实现IM服务端、客户端的能力, 达到简单配置、快速部署、高效接入的效果!
 </br>
 <h4>🚗目前进度</h4>
-- 实现了P2P RESTful API
-- 实现了群发 RESTful API
+<ul>
+  <li>实现了P2P RESTful API</li>
+  <li>实现了群发 RESTful API</li>
+</ul>
 </br>
 <h4>🚀接下来的计划</h4>
-- 设计实现用户、好友、群组等逻辑
-- 设计封装js SDK
-- 设计封装java SDK
+<ul>
+  <li>设计实现用户、好友、群组等逻辑</li>
+  <li>设计封装js SDK</li>
+  <li>设计封装java SDK</li>
+</ul>
 </br>
 </br>
 </br>
