@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+<script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:9292/login",
+            data : {
+                username: "admin001",
+                password: "admin001"
+            },
+            success: function(data){
+                document.cookie = data.obj.token;
+                var token = document.cookie.split(";")[0];
+                console.log(token)
+            },
+            complete: function(XMLHttpRequest, textStatus){
+                // console.log(XMLHttpRequest);
+                // console.log(textStatus);
+            },
+            //调用出错执行的函数
+            error: function(){
+                //请求出错处理
+            }
+        })
+    })
+</script>
+</html>
