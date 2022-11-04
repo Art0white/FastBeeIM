@@ -32,7 +32,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 //指定哪个包下面生成接口文档
-                .apis(RequestHandlerSelectors.basePackage("com.xxx.server.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.fastbee.fastbeeim.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .securityContexts(securityContexts())
@@ -49,9 +49,8 @@ public class SwaggerConfig {
                 .version("1.0")
                 .title("云E办接口文档")
                 .description("云E办接口文档")
-                .contact(new Contact("Bing", "localhost:8081/doc.html", "xxx@xxx.com"))
+                .contact(new Contact("Bing", "localhost:8081/doc.html", "lovsog@163.com"))
                 .build();
-
     }
 
     // 1. 解决访问接口登录问题
