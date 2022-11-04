@@ -6,6 +6,7 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
 /**
  * WebSocket 服务端配置类
+ * @author Lovsog
  */
 @Configuration
 public class WSServerConfig {
