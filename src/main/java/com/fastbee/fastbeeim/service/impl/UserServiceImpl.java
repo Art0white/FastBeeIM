@@ -2,16 +2,18 @@ package com.fastbee.fastbeeim.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fastbee.fastbeeim.common.GetInformationFromJWT;
 import com.fastbee.fastbeeim.mapper.UserMapper;
+import com.fastbee.fastbeeim.utils.JWTUtils;
 import com.fastbee.fastbeeim.utils.RespBean;
 import com.fastbee.fastbeeim.pojo.User;
 import com.fastbee.fastbeeim.service.IUserService;
-import com.fastbee.fastbeeim.utils.UserUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * UserService实现
@@ -20,9 +22,11 @@ import java.util.List;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
-    // ↑ ↑ ↑ 这里报错是idea显示问题, 不影响使用 ↑ ↑ ↑
+
+    @Resource
+    private GetInformationFromJWT getInformationFromJWT;
 
     @Override
     public RespBean login(String username, String password, HttpServletRequest request) {
@@ -35,13 +39,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public User getUserById(Integer id) {
-        return userMapper.selectOne(new QueryWrapper<User>().eq("id", id).eq("enabled", true));
+    public User getUserByUserId(Integer userId) {
+        return userMapper.selectOne(new QueryWrapper<User>().eq("user_id", userId).eq("enabled", true));
     }
 
     @Override
-    public List<User> getAllUsers(String keywords) {
-        return null;
-        //userMapper.getAllUsers(UserUtils.getCurrentUser().getId(), keywords)
+    public String getPasswordByUserName(String username) {
+        User user = userMapper.selectOne(new QueryWrapper<User>().eq("username", username).eq("enabled", true));
+        return user.getPassword();
+    }
+
+    @Override
+    public String getToken(User user) {
+        Map<String,String> payload = new HashMap<>();
+        payload.put("id", user.getUserId()+"");
+        payload.put("username", user.getUsername());
+        return JWTUtils.getToken(payload);
+    }
+
+    @Override
+    public String getUsernameByJWT(HttpServletRequest request) {
+        return this.getInformationFromJWT.getUsernameByJWT(request);
     }
 }
