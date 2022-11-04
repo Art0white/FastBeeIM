@@ -5,6 +5,7 @@ import com.fastbee.fastbeeim.service.IUserService;
 import com.fastbee.fastbeeim.utils.RespBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * @author Lovsog
  */
 @RestController
+@RequestMapping("/api/info")
 public class GetInfoController {
     @Autowired
     private IUserService userService;
@@ -27,18 +29,12 @@ public class GetInfoController {
         return RespBean.success("存在用户 username==" + username, user);
     }
 
-    @PostMapping("/getUserById")
-    public RespBean getUserById(Integer id) {
-        User user = userService.getUserById(id);
+    @PostMapping("/getUserByUserId")
+    public RespBean getUserByUserId(Integer userId) {
+        User user = userService.getUserByUserId(userId);
         if(user == null) {
-            return RespBean.error("不存在用户 id==" + id);
+            return RespBean.error("不存在用户 id==" + userId);
         }
-        return RespBean.success("存在用户 id==" + id, user);
-    }
-
-    @PostMapping("/getAllUsers")
-    public List<User> getAllUsers(String keywords) {
-        System.out.println(userService.getAllUsers(keywords).toString());
-        return userService.getAllUsers(keywords);
+        return RespBean.success("存在用户 id==" + userId, user);
     }
 }

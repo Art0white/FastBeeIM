@@ -1,11 +1,12 @@
 package com.fastbee.fastbeeim.controller;
 
-import com.fastbee.fastbeeim.bo.FSIMWebSocketServer;
-import com.fastbee.fastbeeim.pojo.TextMessage;
+import com.fastbee.fastbeeim.common.FSIMWebSocketServer;
 import com.fastbee.fastbeeim.utils.RespBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Lovsog
  */
 @Controller
+@RequestMapping("/api/msg")
 public class WebSocketController {
 
     @Autowired

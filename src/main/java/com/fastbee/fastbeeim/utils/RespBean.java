@@ -32,4 +32,8 @@ public class RespBean {
     public static RespBean error(String message, Object obj) {
         return new RespBean(404, message, obj);
     }
+
+    public static RespBean JWTError(String message, Object obj) {
+        return new RespBean(505, message, obj);
+    }
 }
