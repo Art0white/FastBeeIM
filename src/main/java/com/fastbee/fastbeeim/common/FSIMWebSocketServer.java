@@ -1,8 +1,9 @@
-package com.fastbee.fastbeeim.bo;
+package com.fastbee.fastbeeim.common;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fastbee.fastbeeim.pojo.TextMessage;
+import com.fastbee.fastbeeim.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -46,14 +47,12 @@ public class FSIMWebSocketServer {
     /**
      * 客户端连接时方法
      * @param clientId
-     * @param session
      * @throws IOException
      */
     @OnOpen
-    public void onOpen(@PathParam("clientId") String clientId, Session session) throws IOException {
+    public void onOpen(@PathParam("clientId") String clientId) throws IOException {
         logger.info("onOpen: has new client connect -" + clientId);
         this.clientId = clientId;
-        this.session = session;
         addOnlineCount();
         clients.put(clientId, this);
         logger.info("onOpen: now has " + onlineCount + " client online");
@@ -64,7 +63,7 @@ public class FSIMWebSocketServer {
      * @throws IOException
      */
     @OnClose
-    public void onClose() throws IOException {
+    public void onClose() {
         logger.info("onClose: has new client close connection -" + clientId);
         clients.remove(clientId);
         subOnlineCount();
@@ -105,11 +104,10 @@ public class FSIMWebSocketServer {
 
     /**
      * 发生error时
-     * @param session
      * @param error
      */
     @OnError
-    public void onError(Session session, Throwable error) {
+    public void onError(Throwable error) {
         logger.info("onError: [clientId: " + clientId + " ,error:" + error.getCause() + "]");
     }
 
