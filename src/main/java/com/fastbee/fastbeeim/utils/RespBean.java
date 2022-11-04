@@ -1,4 +1,4 @@
-package com.fastbee.fastbeeim.pojo;
+package com.fastbee.fastbeeim.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
