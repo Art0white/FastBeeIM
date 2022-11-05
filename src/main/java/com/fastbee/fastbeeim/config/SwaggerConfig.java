@@ -22,8 +22,7 @@ import java.util.List;
  * Swagger2 配置类
  * @author Lovsog
  */
-//@Configuration
-
+@Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 

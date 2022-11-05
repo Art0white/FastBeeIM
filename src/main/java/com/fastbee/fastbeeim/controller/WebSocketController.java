@@ -2,6 +2,7 @@ package com.fastbee.fastbeeim.controller;
 
 import com.fastbee.fastbeeim.common.FSIMWebSocketServer;
 import com.fastbee.fastbeeim.utils.RespBean;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * WebSocket相关
  * @author Lovsog
  */
+@Api(tags = "发送消息相关API")
 @Controller
 @RequestMapping("/api/msg")
 public class WebSocketController {

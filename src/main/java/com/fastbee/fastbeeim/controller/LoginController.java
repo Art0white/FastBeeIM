@@ -4,6 +4,7 @@ import com.fastbee.fastbeeim.dto.LoginDTO;
 import com.fastbee.fastbeeim.pojo.User;
 import com.fastbee.fastbeeim.service.impl.UserServiceImpl;
 import com.fastbee.fastbeeim.utils.RespBean;
+import io.swagger.annotations.Api;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+@Api(tags = "用户登录相关API")
 @RestController
 @Validated
 @CrossOrigin
