@@ -22,7 +22,8 @@ import java.util.List;
  * Swagger2 配置类
  * @author Lovsog
  */
-@Configuration
+//@Configuration
+
 @EnableSwagger2
 public class SwaggerConfig {
 
@@ -34,59 +35,18 @@ public class SwaggerConfig {
                 //指定哪个包下面生成接口文档
                 .apis(RequestHandlerSelectors.basePackage("com.fastbee.fastbeeim.controller"))
                 .paths(PathSelectors.any())
-                .build()
-                .securityContexts(securityContexts())
-                .securitySchemes(securitySchemes()); // 配置请求头信息
+                .build();
     }
 
     /**
      * 文档基本信息
-     *
-     * @return
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .version("1.0")
-                .title("云E办接口文档")
-                .description("云E办接口文档")
-                .contact(new Contact("Bing", "localhost:8081/doc.html", "lovsog@163.com"))
+                .title("极蜜IM接口文档")
+                .description("极蜜IM接口文档")
+                .contact(new Contact("Lovsog", "localhost:9292/doc.html", "lovsog@163.com"))
                 .build();
     }
-
-    // 1. 解决访问接口登录问题
-    private List<ApiKey> securitySchemes() {
-        // 设置请求头信息
-        List<ApiKey> result = new ArrayList<>();
-        // 参数：api key 名字 { 准备的 key 名字，value 请求头 }
-        result.add(new ApiKey("Authorization", "Authorization", "header"));
-        return result;
-    }
-
-    // 2. 解决访问接口登录问题
-    private List<SecurityContext> securityContexts() {
-        // 设置需要登录认证的路径
-        List<SecurityContext> result = new ArrayList<>();
-        result.add(getContextByPath());
-        return result;
-    }
-
-    // 3. 解决访问接口登录问题
-    private SecurityContext getContextByPath() {
-        return SecurityContext.builder()
-                .securityReferences(defaultAuth())
-                .forPaths(PathSelectors.regex("/hello/.*"))
-                .forPaths(PathSelectors.regex("/register/.*"))
-                .build();
-    }
-
-    // 4. 设置默认授权 - 解决访问接口登录问题
-    private List<SecurityReference> defaultAuth() {
-        List<SecurityReference> result = new ArrayList<>();
-        AuthorizationScope authorizationScope = new AuthorizationScope("global","accessEverything");
-        AuthorizationScope[] scopes = new AuthorizationScope[1];
-        scopes[0] = authorizationScope;
-        result.add(new SecurityReference("Authorization", scopes));
-        return result;
-    }
-
 }
