@@ -17,4 +17,6 @@ public class FBApplication {
     private String appKey;
 
     private String appSecret;
+
+    private boolean enabled;
 }
