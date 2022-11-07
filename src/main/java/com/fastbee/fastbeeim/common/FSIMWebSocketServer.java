@@ -3,7 +3,6 @@ package com.fastbee.fastbeeim.common;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fastbee.fastbeeim.pojo.TextMessage;
-import com.fastbee.fastbeeim.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
