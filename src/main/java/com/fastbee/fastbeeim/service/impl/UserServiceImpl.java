@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fastbee.fastbeeim.common.GetInformationFromJWT;
 import com.fastbee.fastbeeim.mapper.UserMapper;
-import com.fastbee.fastbeeim.utils.JWTUtils;
 import com.fastbee.fastbeeim.utils.RespBean;
 import com.fastbee.fastbeeim.pojo.User;
 import com.fastbee.fastbeeim.service.IUserService;
@@ -12,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * UserService实现
@@ -47,18 +44,5 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public String getPasswordByUserName(String username) {
         User user = userMapper.selectOne(new QueryWrapper<User>().eq("username", username).eq("enabled", true));
         return user.getPassword();
-    }
-
-    @Override
-    public String getToken(User user) {
-        Map<String,String> payload = new HashMap<>();
-        payload.put("id", user.getUserId()+"");
-        payload.put("username", user.getUsername());
-        return JWTUtils.getToken(payload);
-    }
-
-    @Override
-    public String getUsernameByJWT(HttpServletRequest request) {
-        return this.getInformationFromJWT.getUsernameByJWT(request);
     }
 }
