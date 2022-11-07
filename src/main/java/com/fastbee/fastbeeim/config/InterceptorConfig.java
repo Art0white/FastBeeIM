@@ -9,15 +9,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * JWT 拦截器配置类
  * @author Lovsog
  */
-//@Configuration
+
+@Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new JWTInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/login",
-                        "/login.html",
-                        "/api/**"
+                .excludePathPatterns(
+                        "/api/app/createApp"
                         );
     }
 }
