@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-@ServerEndpoint("/ws/{clientId}")
+@ServerEndpoint("/ws/{appId}/{clientId}")
 public class FSIMWebSocketServer {
     /**
      * 日志
@@ -49,7 +49,7 @@ public class FSIMWebSocketServer {
      * @throws IOException
      */
     @OnOpen
-    public void onOpen(@PathParam("clientId") String clientId) throws IOException {
+    public void onOpen(@PathParam("clientId") String clientId) {
         logger.info("onOpen: has new client connect -" + clientId);
         this.clientId = clientId;
         addOnlineCount();

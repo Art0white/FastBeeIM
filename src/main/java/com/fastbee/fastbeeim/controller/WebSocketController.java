@@ -17,13 +17,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/api/msg")
 public class WebSocketController {
-
     @Autowired
     private FSIMWebSocketServer websocketServer;
 
     @ResponseBody
     @PostMapping(value = "/sendP2PMessage")
-    public RespBean sendP2PMessage(String content, Integer from, String fromNick, Integer to, int messageType) {
+    public RespBean sendP2PMessage(String content,
+                                   Integer from,
+                                   String fromNick,
+                                   Integer to,
+                                   int messageType) {
         int res = websocketServer.sendP2PMessage(content, from, fromNick, to, messageType, 1);
         if(res == 0) {
             return RespBean.error("不存在该接收方");

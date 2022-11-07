@@ -5,7 +5,7 @@ function getQueryString(name) {
 }
 
 var webSocket;
-var appid = 11;
+var appid = 12;
 var username = getQueryString("username");
 alert("我的，名字叫    " + username);
 var userTo = document.getElementById('userTo').value;
