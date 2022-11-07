@@ -1,6 +1,5 @@
 package com.fastbee.fastbeeim.pojo;
 
-import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
