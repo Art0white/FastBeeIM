@@ -5,6 +5,7 @@
 </br>
 <h4>🚗当前进度</h4>
 <ul>
+  <li>通过appKey区别不同应用</li>
   <li>实现了P2P RESTful API</li>
   <li>实现了群发 RESTful API</li>
 </ul>
