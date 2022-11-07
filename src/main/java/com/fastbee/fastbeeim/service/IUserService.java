@@ -19,8 +19,4 @@ public interface IUserService extends IService<User> {
     User getUserByUserId(Integer userId);
 
     String getPasswordByUserName(String username);
-
-    String getToken(User user);
-
-    String getUsernameByJWT(HttpServletRequest request);
 }
