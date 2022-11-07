@@ -1,5 +1,4 @@
 package com.fastbee.fastbeeim.utils;
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -9,17 +8,15 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.Map;
 
+
 @Component
-public class JWTUtils {
-
-    final static String mySecret = "MySecret";
-
+public class FBApplicationsUtils {
     /**
-     * 生成 token
+     * 生成 AppKey
      */
-    public static String getToken(Map<String, String> map) {
-        Date date = new Date(System.currentTimeMillis() + 86400 * 1000);
-        Algorithm algorithm = Algorithm.HMAC256(mySecret);
+    public static String createAppKey(Map<String, String> map, String appSecret) {
+        Date date = new Date(System.currentTimeMillis() + 86400 * 7 * 1000); // 86400L * 365 * 60 * 1000
+        Algorithm algorithm = Algorithm.HMAC256(appSecret);
         //创建jwt builder
         JWTCreator.Builder builder = JWT.create();
         //payload
@@ -35,9 +32,9 @@ public class JWTUtils {
     }
 
     /**
-     * 校验 token 是否正确
+     * 校验 AppKey 是否正确
      */
-    public static DecodedJWT verify(String token) {
-        return JWT.require(Algorithm.HMAC256(mySecret)).build().verify(token);
+    public static DecodedJWT verify(String appKey, String appSecret) {
+        return JWT.require(Algorithm.HMAC256(appSecret)).build().verify(appKey);
     }
 }
