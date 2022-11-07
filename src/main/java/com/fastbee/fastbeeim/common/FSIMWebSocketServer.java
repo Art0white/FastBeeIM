@@ -49,9 +49,10 @@ public class FSIMWebSocketServer {
      * @throws IOException
      */
     @OnOpen
-    public void onOpen(@PathParam("clientId") String clientId) {
+    public void onOpen(@PathParam("clientId") String clientId, Session session) {
         logger.info("onOpen: has new client connect -" + clientId);
         this.clientId = clientId;
+        this.session = session;
         addOnlineCount();
         clients.put(clientId, this);
         logger.info("onOpen: now has " + onlineCount + " client online");
@@ -75,7 +76,7 @@ public class FSIMWebSocketServer {
      * @throws IOException
      */
     @OnMessage
-    public void onMessage(String message){
+    public void onMessage(String message) {
         logger.info("onMessage: [clientId: " + clientId + " ,message:" + message + "]");
         JSONObject jsonObject = JSON.parseObject(message);
 
@@ -139,6 +140,7 @@ public class FSIMWebSocketServer {
         for (FSIMWebSocketServer item : clients.values()) {
             if (item.clientId.equals(to.toString())) {
                 i++;
+                System.out.println(json.toJSONString());
                 item.session.getAsyncRemote().sendText(json.toJSONString());
                 break;
             }
@@ -156,7 +158,7 @@ public class FSIMWebSocketServer {
                                  Integer from,
                                  String fromNick,
                                  int messageType,
-                                 int sendMessageType){
+                                 int sendMessageType) {
         JSONObject json = new JSONObject();
         TextMessage textMessage = new TextMessage();
         textMessage.setFrom(from);
