@@ -3,7 +3,7 @@ package com.fastbee.fastbeeim.common;
 import com.auth0.jwt.exceptions.AlgorithmMismatchException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.fastbee.fastbeeim.utils.JWTUtils;
+import com.fastbee.fastbeeim.utils.FBApplicationsUtils;
 import com.fastbee.fastbeeim.utils.RespBean;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
@@ -18,18 +18,19 @@ public class JWTInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //获取请求头中令牌
         RespBean respBean = null;
-        String token = request.getHeader("token");
+        String appKey = request.getHeader("appKey");
+        String appSecret = request.getHeader("appSecret");
         try {
-            JWTUtils.verify(token);
+            FBApplicationsUtils.verify(appKey, appSecret);
             return true;
         }catch (SignatureVerificationException e){
             respBean = RespBean.JWTError("无效签名", false);
         }catch (TokenExpiredException e){
-            respBean = RespBean.JWTError("token过期", false);
+            respBean = RespBean.JWTError("appKey过期", false);
         }catch (AlgorithmMismatchException e){
-            respBean = RespBean.JWTError("token算法不一致", false);
+            respBean = RespBean.JWTError("appKey算法不一致", false);
         }catch (Exception e){
-            respBean = RespBean.JWTError("token无效", false);
+            respBean = RespBean.JWTError("appKey无效", false);
         }
 
         String json = new ObjectMapper().writeValueAsString(respBean);
