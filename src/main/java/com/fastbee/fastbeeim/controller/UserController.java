@@ -4,12 +4,11 @@ import com.fastbee.fastbeeim.pojo.User;
 import com.fastbee.fastbeeim.service.IUserService;
 import com.fastbee.fastbeeim.utils.RespBean;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import javax.annotation.Resource;
 
 /**
  * 获取信息相关API
@@ -19,8 +18,8 @@ import java.util.List;
 @Api(tags = "获取消息相关API")
 @RestController
 @RequestMapping("/api/info")
-public class GetInfoController {
-    @Autowired
+public class UserController {
+    @Resource
     private IUserService userService;
 
     @PostMapping("/getUserByUserName")
