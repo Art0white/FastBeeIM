@@ -36,7 +36,10 @@ public class WebSocketController {
 
     @ResponseBody
     @PostMapping(value = "/sendGroupMessage")
-    public RespBean sendGroupMessage(String content, Integer from, String fromNick, int messageType) {
+    public RespBean sendGroupMessage(String content,
+                                     Integer from,
+                                     String fromNick,
+                                     int messageType) {
         websocketServer.sendGroupMessage(content, from, fromNick, messageType, 2);
         return RespBean.success("群发消息成功",content);
     }

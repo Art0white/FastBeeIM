@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * Swagger2 配置类
+ * http://localhost:9292/swagger-ui.html
  * @author Lovsog
  */
 @Configuration

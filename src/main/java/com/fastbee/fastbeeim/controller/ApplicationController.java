@@ -18,7 +18,6 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/api/app")
 public class ApplicationController {
-
     @Resource
     private FBApplicationServiceImpl fbApplicationService;
 
