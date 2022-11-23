@@ -7,10 +7,13 @@ import com.fastbee.fastbeeim.mapper.UserMapper;
 import com.fastbee.fastbeeim.utils.RespBean;
 import com.fastbee.fastbeeim.pojo.User;
 import com.fastbee.fastbeeim.service.IUserService;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 /**
  * UserService实现
@@ -24,6 +27,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Resource
     private GetInformationFromJWT getInformationFromJWT;
+
+    @Resource
+    private RedisTemplate redisTemplate;
 
     @Override
     public RespBean login(String username, String password, HttpServletRequest request) {

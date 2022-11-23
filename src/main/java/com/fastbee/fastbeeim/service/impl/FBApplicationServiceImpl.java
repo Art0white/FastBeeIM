@@ -7,6 +7,7 @@ import com.fastbee.fastbeeim.mapper.FBApplicationMapper;
 import com.fastbee.fastbeeim.pojo.FBApplication;
 import com.fastbee.fastbeeim.service.IFBApplicationService;
 import com.fastbee.fastbeeim.utils.FBApplicationsUtils;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
