@@ -25,12 +25,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Resource
     private UserMapper userMapper;
 
-    @Resource
-    private GetInformationFromJWT getInformationFromJWT;
-
-    @Resource
-    private RedisTemplate redisTemplate;
-
     @Override
     public RespBean login(String username, String password, HttpServletRequest request) {
         return null;
