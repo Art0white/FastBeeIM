@@ -1,6 +1,5 @@
 # FastBeeIM
 <img width="100%" alt="FastBee_Logo" src="https://user-images.githubusercontent.com/59257085/199384194-93e60a4e-2aef-4a22-866c-4439db913757.png">
-<h3>极蜜IM, 快速尝到甜头!</h3>
 <a href="http://spring.io/projects/spring-boot">
   <img src="https://img.shields.io/badge/spring--boot-2.4.2-green.svg" alt="spring-boot">
 </a>
@@ -12,7 +11,8 @@
 </a>
 <a href="http://ibeetl.com/">
   <img src="https://img.shields.io/badge/beetl-3.3.1-yellow.svg" alt="beetl">
-</a>  
+</a> 
+<h3>极蜜IM, 快速尝到甜头!</h3> 
 提供给开发者快速实现IM服务端、客户端的能力, 达到简单配置、快速部署、高效接入的效果!
 </br>
 <h4>🚗当前进度</h4>
