@@ -7,12 +7,6 @@
     </a>
     <a href="http://mp.baomidou.com">
       <img src="https://img.shields.io/badge/mybatis--plus-3.4.0-blue.svg" alt="mybatis-plus">
-    </a>  
-    <a href="https://www.hutool.cn/">
-      <img src="https://img.shields.io/badge/hutool-5.4.4-blue.svg" alt="hutool">
-    </a>
-    <a href="http://ibeetl.com/">
-      <img src="https://img.shields.io/badge/beetl-3.3.1-yellow.svg" alt="beetl">
     </a> 
   </p>
 </p>
